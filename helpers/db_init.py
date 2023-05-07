@@ -20,11 +20,16 @@ def db_setup_post(exchanges):
                 price real, 
                 volume real,
                 currency text,
-                bid_price real,
-                ask_price real,
+                best_bid_price real,
+                best_ask_price real,
+                mid_price real,
                 price_xetra real,
+                highest_price real,
                 price_average real,
+                lowest_price real,
                 trans_type text,
+                qual_CPM text,
+                qual_BBBO text,
                 matched INTEGER)''')
 
     con.commit()

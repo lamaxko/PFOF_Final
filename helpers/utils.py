@@ -41,7 +41,7 @@ def export_files(exchanges, cur, output_folder):
         os.makedirs(output_folder)
 
     for exchange in exchanges:
-        cur.execute(f'''SELECT * FROM {exchange}_post WHERE matched = 1''')  # Change this line to fetch from the '_pre' table
+        cur.execute(f'''SELECT row_number, id, timestamp, ticker, price, volume, currency, best_bid_price, best_ask_price, price_xetra, highest_price, lowest_price, trans_type, qual_BBBO, qual_CPM, matched FROM {exchange}_post WHERE matched = 1''')  # Change this line to fetch from the '_pre' table
         data = cur.fetchall()
 
         # Export data to a CSV file
@@ -49,12 +49,12 @@ def export_files(exchanges, cur, output_folder):
             csv_writer = csv.writer(csvfile)
             
             # Write the header row with updated column names
-            csv_writer.writerow(['Exchange', 'Row Number', 'ID', 'Timestamp', 'Ticker', 'Price', 'Volume', 'Currency', 'Bid Price', 'Ask Price', 'Price Xetra', 'Price Average', 'Transaction Type', 'Matched'])
+            csv_writer.writerow(['Exchange', 'Row Number', 'ID', 'Timestamp', 'Ticker', 'Price', 'Volume', 'Currency', 'Best Bid Price', 'Best Ask Price', 'Price Xetra', 'Highest Price', 'Lowest Price', 'Transaction Type', 'Qual BBBO', 'Qual CPM', 'Matched'])
             
             # Write data rows with updated column values
             for row in data:
-                row_number, id, timestamp, ticker, price, volume, currency, bid_price, ask_price, price_xetra, price_average, trans_type, matched = row
-                csv_writer.writerow([exchange, row_number, id, timestamp, ticker, price, volume, currency, bid_price, ask_price, price_xetra, price_average, trans_type, matched])
+                row_number, id, timestamp, ticker, price, volume, currency, best_bid_price, best_ask_price, price_xetra, highest_price, lowest_price , trans_type, qual_BBBO, qual_CPM, matched = row
+                csv_writer.writerow([exchange, row_number, id, timestamp, ticker, price, volume, currency, best_bid_price, best_ask_price, price_xetra, highest_price, lowest_price, trans_type, qual_BBBO, qual_CPM, matched])
 
 def create_indexes_pre(cur, exchanges):
     for exchange in exchanges:

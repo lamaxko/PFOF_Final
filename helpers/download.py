@@ -85,7 +85,7 @@ def insert_data_to_db(db_conn, exchange, file_content, trans_type):
 
     if trans_type == 'pre':
 
-        '''if exchange in ['DETR']:
+        if exchange in ['DETR']:
             for record in file_content:
                 best_bid = record.get('mdBidMktDepthGroup1')
                 best_ask = record.get('mdAskMktDepthGroup1')
@@ -101,7 +101,7 @@ def insert_data_to_db(db_conn, exchange, file_content, trans_type):
                         float(best_bid['quantity']) if best_bid else None,
                         float(best_ask['price']) if best_ask else None,
                         float(best_ask['quantity']) if best_ask else None,)
-                cursor.execute(f'INSERT INTO {exchange}_{trans_type} (timestamp, ticker, bid_price, bid_volume, ask_price, ask_volume) VALUES (?, ?, ?, ?, ?, ?)', data)'''
+                cursor.execute(f'INSERT INTO {exchange}_{trans_type} (timestamp, ticker, bid_price, bid_volume, ask_price, ask_volume) VALUES (?, ?, ?, ?, ?, ?)', data)
 
 
         if exchange in ['DGAT']:
