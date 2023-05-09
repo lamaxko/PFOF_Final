@@ -54,7 +54,7 @@ DEUR - Eurex (only derivatives)
 
 ## CTP - Börse AG
 * https://www.boersenag.de/mifid-ii-delayed-data-pretrade/
-* https://www.boersenag.de/mifid-ii-delayed-data-posttrade/
+* https://www.boersenag.de/mifid-ii-delayed-data/
 ### Trading venues:
 DUSA - Börse Düsseldorf Regulierter Markt
 DUSB - Börse Düsseldorf Freiverkehr
