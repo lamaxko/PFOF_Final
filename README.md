@@ -5,7 +5,7 @@ It is recommended to scrape between 22:00 and 00:00, the data will be most compl
 
 1. Install the required packages:
     ```
-    pip install requests
+    pip install requirements
     ```
 2. Update the following variables in `01_scrape.py` to your needs:
     ```python
