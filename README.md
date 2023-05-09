@@ -1,7 +1,7 @@
 # PFOF_Final
 
 ## Usage
-It is recommended to scrape between 22:00 and 00:00, the data will be most complete.
+It is recommended to scrape between 22:00 and 00:00, the data will be most complete. The `01_scrape.py` will approximatly take 2 hours to scrape one trading day. And the `02_analysis.py` will run up to 15 minutes.
 
 1. Install the required packages:
     ```
