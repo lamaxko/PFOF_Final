@@ -49,7 +49,6 @@ def download_files(url, exchange, trans_type):
 
 
                 
-
     except Exception as e:
         print(f"Error downloading {url}: {e}")
     
@@ -65,7 +64,9 @@ def insert_data_to_db(db_conn, exchange, file_content, trans_type):
         if exchange in ['DUSA', 'DUSB', 'DUSC', 'DUSD', 'HAMA', 'HAMB', 'HANA', 'HANB']:
             dt = datetime.strptime(timestamp_str, "%d.%m.%Y %H:%M:%S")
         elif exchange == 'GETX':
-            dt = datetime.strptime(timestamp_str, "%H:%M:%S.%f")
+            today = datetime.now().date()
+            tm = datetime.strptime(timestamp_str, "%H:%M:%S.%f").time()
+            dt = datetime.combine(today, tm)
         else:
             timestamp_str = timestamp_str[:-4] + "Z"  # Truncate the fractional part to 6 digits
             if exchange in ['LSEX'] and trans_type == 'pre':

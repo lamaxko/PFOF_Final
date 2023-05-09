@@ -4,9 +4,9 @@ def main():
     # Initialize variables for Boerse AG venues and date and time range
     exchanges = ['GETX', 'DUSC', 'DUSD', 'DEUR', 'DUSA', 'DUSB', 'HAMA', 'HAMB', 'HANA', 'HANB', 'DFRA', 'DGAT', 'LSEX', 'DETR']
     trans_types = ['post', 'pre']
-    date = '2023.05.05'
-    begin_time = '070000'
-    stop_time = '073000'
+    date = '2023.05.08'
+    begin_time = '060000'
+    stop_time = '220000'
     
     # Set up the databases for post and pre transactions
     db_conn = db_setup_post(exchanges)

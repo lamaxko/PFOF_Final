@@ -75,8 +75,8 @@ def generate_url_list(exchange, trans_type, date, begin_time, stop_time):
             links_to_download.append(f'https://www.ls-x.de/_rpc/json/.lstc/instrument/list/lsxpretrades?time={timestamp}')
             
         elif exchange in ['DUSA', 'DUSB', 'DUSC', 'DUSD', 'HAMA', 'HAMB', 'HANA', 'HANB'] and trans_type == 'post':
-            links_to_download.append(f"https://cld42.boersenag.de/m13data/data/Mifir13DelayedData_{exchange}_00000030_{timestamp}0000000000.csv")
-        
+            links_to_download.append(f"https://cld42.boersenag.de/m13data/data/Mifir13DelayedData_{exchange}_0000004C_{timestamp}0000000000.csv")
+            
         elif exchange in ['GETX']:
             links_to_download.append(f"https://erdk.bayerische-boerse.de/?u=edd-MUNCD&p=public&path=/{trans_type}trade/{trans_type}trade.{timestamp}.munc.csv.gz")
     return links_to_download

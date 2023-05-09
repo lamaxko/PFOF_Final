@@ -1,10 +1,12 @@
-from helpers import con_setup, create_indexes_xetra, create_indexes_pre, create_indexes_post, is_valid_price, export_files 
+from helpers import con_setup, create_indexes_xetra, create_indexes_pre, create_indexes_post, is_valid_price, export_files, export_table_rows_to_csv  
+import datetime
 
 def main():
+    
     # Initialize variables
-    output_folder = '/Users/lasse/Desktop/PFOF_Final/csv_export'
+    output_folder = f'/Users/lasse/Desktop/PFOF_Final/csv_export/{datetime.date.today().strftime("%Y-%m-%d")}'
     exchanges_analysis = ['DGAT', 'GETX', 'LSEX', 'DUSC', 'DUSD']
-    exchanges_reference = ['DETR', 'DEUR', 'DFRA', 'DGAT', 'LSEX', 'DUSA', 'DUSB', 'DUSC', 'DUSD', 'HAMA', 'HAMB', 'HANA', 'HANB']
+    exchanges_reference = ['DETR', 'DEUR', 'DFRA', 'DGAT', 'LSEX', 'DUSA', 'DUSB', 'DUSC', 'DUSD', 'HAMA', 'HAMB', 'HANA', 'HANB', 'GETX']
     con, cur = con_setup()
 
     # Create indexes and match with Xetra
@@ -28,6 +30,7 @@ def main():
 
     # Export files as CSV
     export_csv(con, cur, exchanges_analysis, output_folder)
+    export_table_rows_to_csv(con, cur, exchanges_analysis, exchanges_reference, output_folder)
 
     
 def match_Xetra(con, cur, exchanges_analysis):
@@ -92,7 +95,7 @@ def match_post(con, cur, exchanges_analysis, exchanges_reference):
 
                 # Compare with other exchanges
                 for exchange2 in exchanges_reference:
-                    if exchange1 != exchange2:
+                    if exchange1 != exchange2 and exchange2 != 'DETR':
                         # Find matching data in the exchange2_post table
                         cur.execute(f'''SELECT price FROM {exchange2}_post WHERE timestamp = '{timestamp}' and ticker = '{ticker}' ''')
                         data2 = cur.fetchall()

@@ -74,3 +74,19 @@ def create_indexes_post(cur, exchanges):
     for exchange in exchanges:
         cur.execute(f'CREATE INDEX IF NOT EXISTS idx_{exchange}_post_timestamp_ticker ON {exchange}_post (timestamp, ticker)')
         cur.execute(f'CREATE INDEX IF NOT EXISTS idx_{exchange}_post_row_number ON {exchange}_post (row_number)')
+
+def export_table_rows_to_csv(con, cur, exchanges_analysis, exchanges_reference, output_folder):
+    exchanges = exchanges_analysis + exchanges_reference
+    row_counts = []
+
+    for exchange in exchanges:
+        for table_type in ['_post', '_pre']:
+            table_name = exchange + table_type
+            cur.execute(f'SELECT COUNT(*) FROM {table_name}')
+            count = cur.fetchone()[0]
+            row_counts.append([table_name, count])
+
+    with open(f'{output_folder}/table_row_counts.csv', 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerow(['table', 'row_count'])
+        csv_writer.writerows(row_counts)
