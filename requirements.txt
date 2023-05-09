@@ -1,0 +1,9 @@
+Requests==2.30.0
+datetime
+sqlite3
+csv
+gzip
+json
+requests
+csv
+os
